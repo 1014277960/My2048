@@ -3,10 +3,12 @@ package com.my2048;
 import java.util.Random;
 
 import android.R.integer;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.text.method.MovementMethod;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
@@ -16,6 +18,11 @@ import android.view.View.OnTouchListener;
 import android.widget.Toast;
 
 public class GameView extends View implements OnTouchListener, OnGestureListener {
+	
+	private final int MOVE_LEFT = 0;
+	private final int MOVE_RIGHT = 1;
+	private final int MOVE_UP = 2;
+	private final int MOVE_DOWN = 3;
 	
 	private GestureDetector mDetector;
 	
@@ -82,6 +89,253 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 		map[x][y].setValue(value);
 	}
 
+	private void move(int direct) {
+		if (direct == MOVE_LEFT) {
+			boolean change = false;
+			for (int i = 0; i != 4; i++) {
+				int[] row = new int[4];
+				int a = 0;
+				if (map[i][0].getValue() != 0) {
+					row[a] = map[i][0].getValue();
+					if (a != 0) {
+						change = true;
+					}
+					a++;
+				}
+				if (map[i][1].getValue() != 0) {
+					row[a] = map[i][1].getValue();
+					if (a != 1) {
+						change = true;
+					}
+					a++;
+				}
+				if (map[i][2].getValue() != 0) {
+					row[a] = map[i][2].getValue();
+					if (a != 2) {
+						change = true;
+					}
+					a++;
+				}
+				if (map[i][3].getValue() != 0) {
+					row[a] = map[i][3].getValue();
+					if (a != 3) {
+						change = true;
+					}
+					a++;
+				}
+				for (int j = 0; j != 3; j++) {
+					if ((row[j] == row[j + 1]) && (row[j] != 0)) {
+						row[j] *= 2;
+						j++;
+						if (j == 1) {
+							row[1] = row[2];
+							row[2] = row[3];
+							row[3] = 0;
+						} else if (j == 2) {
+							row[2] = row[3];
+							row[3] = 0;
+						} else if (j == 3) {
+							row[3] = 0;
+						}
+						change = true;
+						break;
+					}
+				}
+				for (int k = 0; k != 4; k++) {
+					map[i][k].setValue(row[k]);
+				}
+			}
+			if (change) {
+				random();
+			}
+			invalidate();
+			return;
+		}
+		if (direct == MOVE_RIGHT) {
+			boolean change = false;
+			for (int i = 0; i != 4; i++) {
+				int[] row = new int[4];
+				int a = 0;
+				if (map[i][3].getValue() != 0) {
+					row[a] = map[i][3].getValue();
+					if (a != 0) {
+						change = true;
+					}
+					a++;
+				}
+				if (map[i][2].getValue() != 0) {
+					row[a] = map[i][2].getValue();
+					if (a != 1) {
+						change = true;
+					}
+					a++;
+				}
+				if (map[i][1].getValue() != 0) {
+					row[a] = map[i][1].getValue();
+					if (a != 2) {
+						change = true;
+					}
+					a++;
+				}
+				if (map[i][0].getValue() != 0) {
+					row[a] = map[i][0].getValue();
+					if (a != 3) {
+						change = true;
+					}
+					a++;
+				}
+				for (int j = 0; j != 3; j++) {
+					if ((row[j] == row[j + 1]) && (row[j] != 0)) {
+						row[j] *= 2;
+						j++;
+						if (j == 1) {
+							row[1] = row[2];
+							row[2] = row[3];
+							row[3] = 0;
+						} else if (j == 2) {
+							row[2] = row[3];
+							row[3] = 0;
+						} else if (j == 3) {
+							row[3] = 0;
+						}
+						change = true;
+						break;
+					}
+				}
+				for (int k = 0; k != 4; k++) {
+					map[i][k].setValue(row[3 - k]);
+				}
+			}
+			if (change) {
+				random();
+			}
+			invalidate();
+			return;
+		}
+		if (direct == MOVE_UP) {
+			boolean change = false;
+			for (int i = 0; i != 4; i++) {
+				int[] row = new int[4];
+				int a = 0;
+				if (map[0][i].getValue() != 0) {
+					row[a] = map[0][i].getValue();
+					if (a != 0) {
+						change = true;
+					}
+					a++;
+				}
+				if (map[1][i].getValue() != 0) {
+					row[a] = map[1][i].getValue();
+					if (a != 1) {
+						change = true;
+					}
+					a++;
+				}
+				if (map[2][i].getValue() != 0) {
+					row[a] = map[2][i].getValue();
+					if (a != 2) {
+						change = true;
+					}
+					a++;
+				}
+				if (map[3][i].getValue() != 0) {
+					row[a] = map[3][i].getValue();
+					if (a != 3) {
+						change = true;
+					}
+					a++;
+				}
+				for (int j = 0; j != 3; j++) {
+					if ((row[j] == row[j + 1]) && (row[j] != 0)) {
+						row[j] *= 2;
+						j++;
+						if (j == 1) {
+							row[1] = row[2];
+							row[2] = row[3];
+							row[3] = 0;
+						} else if (j == 2) {
+							row[2] = row[3];
+							row[3] = 0;
+						} else if (j == 3) {
+							row[3] = 0;
+						}
+						change = true;
+						break;
+					}
+				}
+				for (int k = 0; k != 4; k++) {
+					map[k][i].setValue(row[k]);
+				}
+			}
+			if (change) {
+				random();
+			}
+			invalidate();
+			return;
+		}
+		if (direct == MOVE_DOWN) {
+			boolean change = false;
+			for (int i = 0; i != 4; i++) {
+				int[] row = new int[4];
+				int a = 0;
+				if (map[3][i].getValue() != 0) {
+					row[a] = map[3][i].getValue();
+					if (a != 0) {
+						change = true;
+					}
+					a++;
+				}
+				if (map[2][i].getValue() != 0) {
+					row[a] = map[2][i].getValue();
+					if (a != 1) {
+						change = true;
+					}
+					a++;
+				}
+				if (map[1][i].getValue() != 0) {
+					row[a] = map[1][i].getValue();
+					if (a != 2) {
+						change = true;
+					}
+					a++;
+				}
+				if (map[0][i].getValue() != 0) {
+					row[a] = map[0][i].getValue();
+					if (a != 3) {
+						change = true;
+					}
+					a++;
+				}
+				for (int j = 0; j != 3; j++) {
+					if ((row[j] == row[j + 1]) && (row[j] != 0)) {
+						row[j] *= 2;
+						j++;
+						if (j == 1) {
+							row[1] = row[2];
+							row[2] = row[3];
+							row[3] = 0;
+						} else if (j == 2) {
+							row[2] = row[3];
+							row[3] = 0;
+						} else if (j == 3) {
+							row[3] = 0;
+						}
+						change = true;
+						break;
+					}
+				}
+				for (int k = 0; k != 4; k++) {
+					map[k][i].setValue(row[3 - k]);
+				}
+			}
+			if (change) {
+				random();
+			}
+			invalidate();
+			return;
+		}
+
+	}
 	@Override
 	public boolean onDown(MotionEvent arg0) {
 		// TODO Auto-generated method stub
@@ -94,13 +348,17 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 		float X = e2.getX() - e1.getX();
 		float Y = e2.getY() - e1.getY();
 		if (X > 100) {
-			Toast.makeText(context, "右", Toast.LENGTH_SHORT).show();
+			move(MOVE_RIGHT);
+			//Toast.makeText(context, "右", Toast.LENGTH_SHORT).show();
 		} else if (X < -100) {
-			Toast.makeText(context, "左", Toast.LENGTH_SHORT).show();
+			move(MOVE_LEFT);
+			//Toast.makeText(context, "左", Toast.LENGTH_SHORT).show();
 		} else if (Y > 100) {
-			Toast.makeText(context, "下", Toast.LENGTH_SHORT).show();
+			move(MOVE_DOWN);
+			//Toast.makeText(context, "下", Toast.LENGTH_SHORT).show();
 		} else if (Y < -100) {
-			Toast.makeText(context, "上", Toast.LENGTH_SHORT).show();
+			move(MOVE_UP);
+			//Toast.makeText(context, "上", Toast.LENGTH_SHORT).show();
 		}
 		return false;
 	}
