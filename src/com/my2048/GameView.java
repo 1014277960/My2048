@@ -8,10 +8,16 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.GestureDetector;
+import android.view.GestureDetector.OnGestureListener;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.Toast;
 
-public class GameView extends View {
+public class GameView extends View implements OnTouchListener, OnGestureListener {
+	
+	private GestureDetector mDetector;
 	
 	private Context context;
 
@@ -22,6 +28,9 @@ public class GameView extends View {
 	public GameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.context = context;
+		mDetector = new GestureDetector(context, this);
+		setLongClickable(true);
+		setOnTouchListener(this);
 		init();
 	}
 
@@ -72,5 +81,59 @@ public class GameView extends View {
 		}
 		map[x][y].setValue(value);
 	}
+
+	@Override
+	public boolean onDown(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean onFling(MotionEvent e1, MotionEvent e2, float x,
+			float y) {
+		float X = e2.getX() - e1.getX();
+		float Y = e2.getY() - e1.getY();
+		if (X > 100) {
+			Toast.makeText(context, "ср", Toast.LENGTH_SHORT).show();
+		} else if (X < -100) {
+			Toast.makeText(context, "вС", Toast.LENGTH_SHORT).show();
+		} else if (Y > 100) {
+			Toast.makeText(context, "об", Toast.LENGTH_SHORT).show();
+		} else if (Y < -100) {
+			Toast.makeText(context, "ио", Toast.LENGTH_SHORT).show();
+		}
+		return false;
+	}
+
+	@Override
+	public void onLongPress(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean onScroll(MotionEvent e1, MotionEvent e2, float x,
+			float y) {
+		return false;
+	}
+
+	@Override
+	public void onShowPress(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean onSingleTapUp(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean onTouch(View arg0, MotionEvent arg1) {
+		// TODO Auto-generated method stub
+		return mDetector.onTouchEvent(arg1);
+	}
+
 	
 }
