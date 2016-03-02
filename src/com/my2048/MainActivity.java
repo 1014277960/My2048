@@ -1,16 +1,20 @@
 package com.my2048;
 
+
 import android.os.Bundle;
 import android.R.integer;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
 	
@@ -32,6 +36,22 @@ public class MainActivity extends Activity implements OnClickListener {
         button.setOnClickListener(this);
         score.setText(0 + "");
     }
+    
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+    
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+		case R.id.about:
+			Toast.makeText(this, "西电吴同学", Toast.LENGTH_SHORT).show();
+			break;
+		}
+		return true;
+	}
 
 	@Override
 	public void onClick(View v) {
