@@ -4,19 +4,33 @@
     android:orientation="vertical" >
     
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
     	android:layout_height="wrap_content"
     	android:orientation="horizontal" >
     	
     	<TextView
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
+    	    android:textSize="25sp"
     	    android:text="Score:" />
     	
     	<TextView
     	    android:id="@+id/score"
     	    android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content" />
+    	    android:layout_height="wrap_content"
+    	    android:textSize="25sp" />
+    	
+    	<TextView
+    	    android:layout_width="0dp"
+    	    android:layout_height="wrap_content"
+    	    android:layout_weight="1"
+    	    android:textSize="25sp" />
+    	
+    	<ImageButton
+    	    android:id="@+id/restart"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:src="@drawable/restart" />
     	
     </LinearLayout>
     
@@ -26,6 +40,7 @@
     	    android:text="" />
 
     <com.my2048.GameView
+        android:id="@+id/game"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

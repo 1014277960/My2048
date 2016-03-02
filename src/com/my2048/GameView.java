@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 public class GameView extends View implements OnTouchListener, OnGestureListener {
 	
+	public int score = 0;
+	
 	private final int MOVE_LEFT = 0;
 	private final int MOVE_RIGHT = 1;
 	private final int MOVE_UP = 2;
@@ -28,7 +30,7 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 	
 	private Context context;
 
-	private Block[][] map;
+	public Block[][] map;
 	
 	private int width;
 	
@@ -74,7 +76,7 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 	}
 	
 	//随机在一个方块内生成2或4
-	private void random() {
+	public void random() {
 		int value;
 		int x, y;
 		Random random = new Random();
@@ -126,6 +128,7 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 				for (int j = 0; j != 3; j++) {
 					if ((row[j] == row[j + 1]) && (row[j] != 0)) {
 						row[j] *= 2;
+						score += row[j];
 						j++;
 						if (j == 1) {
 							row[1] = row[2];
@@ -147,6 +150,7 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 			}
 			if (change) {
 				random();
+				MainActivity.score.setText(score + "");
 			}
 			invalidate();
 			return;
@@ -187,6 +191,7 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 				for (int j = 0; j != 3; j++) {
 					if ((row[j] == row[j + 1]) && (row[j] != 0)) {
 						row[j] *= 2;
+						score += row[j];
 						j++;
 						if (j == 1) {
 							row[1] = row[2];
@@ -208,6 +213,7 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 			}
 			if (change) {
 				random();
+				MainActivity.score.setText(score + "");
 			}
 			invalidate();
 			return;
@@ -248,6 +254,7 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 				for (int j = 0; j != 3; j++) {
 					if ((row[j] == row[j + 1]) && (row[j] != 0)) {
 						row[j] *= 2;
+						score += row[j];
 						j++;
 						if (j == 1) {
 							row[1] = row[2];
@@ -269,6 +276,7 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 			}
 			if (change) {
 				random();
+				MainActivity.score.setText(score + "");
 			}
 			invalidate();
 			return;
@@ -309,6 +317,7 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 				for (int j = 0; j != 3; j++) {
 					if ((row[j] == row[j + 1]) && (row[j] != 0)) {
 						row[j] *= 2;
+						score += row[j];
 						j++;
 						if (j == 1) {
 							row[1] = row[2];
@@ -330,6 +339,7 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 			}
 			if (change) {
 				random();
+				MainActivity.score.setText(score + "");
 			}
 			invalidate();
 			return;
