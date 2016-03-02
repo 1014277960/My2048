@@ -30,6 +30,7 @@ public class MainActivity extends Activity implements OnClickListener {
         view = (GameView)findViewById(R.id.game);
         button = (ImageButton)findViewById(R.id.restart);
         button.setOnClickListener(this);
+        score.setText(0 + "");
     }
 
 	@Override

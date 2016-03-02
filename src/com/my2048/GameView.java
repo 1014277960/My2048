@@ -125,23 +125,32 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 					}
 					a++;
 				}
-				for (int j = 0; j != 3; j++) {
-					if ((row[j] == row[j + 1]) && (row[j] != 0)) {
-						row[j] *= 2;
-						score += row[j];
-						j++;
-						if (j == 1) {
-							row[1] = row[2];
-							row[2] = row[3];
-							row[3] = 0;
-						} else if (j == 2) {
-							row[2] = row[3];
-							row[3] = 0;
-						} else if (j == 3) {
-							row[3] = 0;
+				
+				if ((row[0] == row[1]) && (row[2] == row[3])) {
+					row[0] *= 2;
+					row[1] = row[2] * 2;
+					row[2] = row[3] = 0;
+					score += row[0];
+					score += row[1];
+				} else {
+					for (int j = 0; j != 3; j++) {
+						if ((row[j] == row[j + 1]) && (row[j] != 0)) {
+							row[j] *= 2;
+							score += row[j];
+							j++;
+							if (j == 1) {
+								row[1] = row[2];
+								row[2] = row[3];
+								row[3] = 0;
+							} else if (j == 2) {
+								row[2] = row[3];
+								row[3] = 0;
+							} else if (j == 3) {
+								row[3] = 0;
+							}
+							change = true;
+							break;
 						}
-						change = true;
-						break;
 					}
 				}
 				for (int k = 0; k != 4; k++) {
@@ -188,23 +197,31 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 					}
 					a++;
 				}
-				for (int j = 0; j != 3; j++) {
-					if ((row[j] == row[j + 1]) && (row[j] != 0)) {
-						row[j] *= 2;
-						score += row[j];
-						j++;
-						if (j == 1) {
-							row[1] = row[2];
-							row[2] = row[3];
-							row[3] = 0;
-						} else if (j == 2) {
-							row[2] = row[3];
-							row[3] = 0;
-						} else if (j == 3) {
-							row[3] = 0;
+				if ((row[0] == row[1]) && (row[2] == row[3])) {
+					row[0] *= 2;
+					row[1] = row[2] * 2;
+					row[2] = row[3] = 0;
+					score += row[0];
+					score += row[1];
+				} else {
+					for (int j = 0; j != 3; j++) {
+						if ((row[j] == row[j + 1]) && (row[j] != 0)) {
+							row[j] *= 2;
+							score += row[j];
+							j++;
+							if (j == 1) {
+								row[1] = row[2];
+								row[2] = row[3];
+								row[3] = 0;
+							} else if (j == 2) {
+								row[2] = row[3];
+								row[3] = 0;
+							} else if (j == 3) {
+								row[3] = 0;
+							}
+							change = true;
+							break;
 						}
-						change = true;
-						break;
 					}
 				}
 				for (int k = 0; k != 4; k++) {
@@ -251,23 +268,31 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 					}
 					a++;
 				}
-				for (int j = 0; j != 3; j++) {
-					if ((row[j] == row[j + 1]) && (row[j] != 0)) {
-						row[j] *= 2;
-						score += row[j];
-						j++;
-						if (j == 1) {
-							row[1] = row[2];
-							row[2] = row[3];
-							row[3] = 0;
-						} else if (j == 2) {
-							row[2] = row[3];
-							row[3] = 0;
-						} else if (j == 3) {
-							row[3] = 0;
+				if ((row[0] == row[1]) && (row[2] == row[3])) {
+					row[0] *= 2;
+					row[1] = row[2] * 2;
+					row[2] = row[3] = 0;
+					score += row[0];
+					score += row[1];
+				} else {
+					for (int j = 0; j != 3; j++) {
+						if ((row[j] == row[j + 1]) && (row[j] != 0)) {
+							row[j] *= 2;
+							score += row[j];
+							j++;
+							if (j == 1) {
+								row[1] = row[2];
+								row[2] = row[3];
+								row[3] = 0;
+							} else if (j == 2) {
+								row[2] = row[3];
+								row[3] = 0;
+							} else if (j == 3) {
+								row[3] = 0;
+							}
+							change = true;
+							break;
 						}
-						change = true;
-						break;
 					}
 				}
 				for (int k = 0; k != 4; k++) {
@@ -314,23 +339,31 @@ public class GameView extends View implements OnTouchListener, OnGestureListener
 					}
 					a++;
 				}
-				for (int j = 0; j != 3; j++) {
-					if ((row[j] == row[j + 1]) && (row[j] != 0)) {
-						row[j] *= 2;
-						score += row[j];
-						j++;
-						if (j == 1) {
-							row[1] = row[2];
-							row[2] = row[3];
-							row[3] = 0;
-						} else if (j == 2) {
-							row[2] = row[3];
-							row[3] = 0;
-						} else if (j == 3) {
-							row[3] = 0;
+				if ((row[0] == row[1]) && (row[2] == row[3])) {
+					row[0] *= 2;
+					row[1] = row[2] * 2;
+					row[2] = row[3] = 0;
+					score += row[0];
+					score += row[1];
+				} else {
+					for (int j = 0; j != 3; j++) {
+						if ((row[j] == row[j + 1]) && (row[j] != 0)) {
+							row[j] *= 2;
+							score += row[j];
+							j++;
+							if (j == 1) {
+								row[1] = row[2];
+								row[2] = row[3];
+								row[3] = 0;
+							} else if (j == 2) {
+								row[2] = row[3];
+								row[3] = 0;
+							} else if (j == 3) {
+								row[3] = 0;
+							}
+							change = true;
+							break;
 						}
-						change = true;
-						break;
 					}
 				}
 				for (int k = 0; k != 4; k++) {
